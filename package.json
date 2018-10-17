@@ -1,5 +1,5 @@
 {
-  "name": "react_shared_components",
+  "name": "@techpago/design",
   "version": "0.1.0",
   "scripts": {
     "start": "react-app-rewired start",
@@ -109,6 +109,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/paduvi/react_shared_components.git"
+    "url": "https://github.com/paduvi/techpago.design.git"
   }
 }

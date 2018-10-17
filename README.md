@@ -1,19 +1,18 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 ## Installation
 Run the following command:
 
 ```
-npm install git+https://github.com/paduvi/react_shared_components.git
+npm install git+https://github.com/paduvi/techpago.design.git
 ``` 
 
 or 
 
 ```
-yarn add git+https://github.com/paduvi/react_shared_components.git
+yarn add git+https://github.com/paduvi/techpago.design.git
 ```
 
 (Optional) Add in `index.html` to use `RichTextEditor`:
@@ -24,7 +23,7 @@ yarn add git+https://github.com/paduvi/react_shared_components.git
 ## Usage
 
 ```javascript
-import {RichTextEditor} from "react_shared_components";
+import {RichTextEditor} from "@techpago/design";
 
 const onChange = (value) => {
     console.log(value);
@@ -46,8 +45,8 @@ const onChange = (value) => {
 
 Or you can clone this repo from git and run:
 ```
-git clone https://github.com/paduvi/react_shared_components.git
-cd react_shared_components
+git clone https://github.com/paduvi/techpago.design.git
+cd techpago.design
 npm install
 npm run start
 ```
