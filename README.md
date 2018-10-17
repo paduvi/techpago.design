@@ -24,12 +24,33 @@ yarn add git+https://github.com/paduvi/techpago.design.git
 
 ```javascript
 import {RichTextEditor} from "@techpago/design";
+// or
+import RichTextEditor from "@techpago/design/dist/RichTextEditor"; // this way better
 
 const onChange = (value) => {
     console.log(value);
 }
 
 <RichTextEditor defaultValue="Hello world" onChange={onChange} />
+```
+
+For shorter code, you can using `babel-plugin-import`:
+
+```
+// .babelrc
+"plugins": [
+  ["import", { "libraryName": "@techpago/design", "libraryDirectory": "dist", "camel2DashComponentName": false}, "@techpago/design"]
+]
+```
+
+```
+import { RichTextEditor } from '@techpago/design';
+ReactDOM.render(<RichTextEditor/>);
+ 
+      ↓ ↓ ↓ ↓ ↓ ↓
+      
+var RichTextEditor = require('@techpago/design/dist/RichTextEditor');
+ReactDOM.render(<RichTextEditor/>);
 ```
 
 ## List of Components
