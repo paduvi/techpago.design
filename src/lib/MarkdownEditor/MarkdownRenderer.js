@@ -4,9 +4,46 @@ import ReactMarkdown from "react-markdown";
 import RemarkMathPlugin from "remark-math";
 import * as ReactKatex from 'react-katex';
 import ReactPlayer from 'react-player';
+import Prism from "prismjs/components/prism-core";
+//other languages depend on these
+import "prismjs/components/prism-clike";
+import "prismjs/components/prism-c";
+import "prismjs/components/prism-java";
+//include javascript as default fallback
+import "prismjs/components/prism-javascript";
 
-import 'bulma/css/bulma.min.css';
 import 'katex/dist/katex.min.css';
+import 'prismjs/themes/prism.css';
+import 'markdown-themes/css/github-theme.css';
+
+
+const BlockCode = ({ value, language }) => {
+    let html;
+    let cls;
+    //console.log(props.value)
+    try {
+        //try to load prism component for language
+        if (language in Prism.languages) {
+            import("prismjs/components/prism-" + language);
+        }
+        
+        html = Prism.highlight(value || "", Prism.languages[language]);
+        cls = `language-${language}`;
+    } catch (er) {
+        //if load failed, fall back to javascript
+        // console.log(er.message + ": \"" + language + "\"");
+        html = Prism.highlight(value || "", Prism.languages["js"]);
+        cls = "language-js";
+    }
+    return (
+        <pre className={cls}>
+            <code
+                dangerouslySetInnerHTML={{ __html: html }}
+                className={cls}
+            />
+        </pre>
+    );
+};
 
 const BlockMath = ({ value }) => <ReactKatex.BlockMath>{value}</ReactKatex.BlockMath>;
 const InlineMath = ({ value }) => <ReactKatex.InlineMath>{value}</ReactKatex.InlineMath>;
@@ -45,11 +82,12 @@ const MarkdownRenderer = (props) => {
             paragraph: ParagraphRenderer,
             math: BlockMath,
             inlineMath: InlineMath,
-            image: Media
+            image: Media,
+            code: BlockCode,
         }
     };
     return (
-        <ReactMarkdown className="content" escapeHtml={false} {...newProps} />
+        <ReactMarkdown escapeHtml={false} {...newProps} />
     );
 };
 
@@ -59,6 +97,16 @@ BlockMath.propTypes = {
 
 InlineMath.propTypes = {
     value: PropTypes.string.isRequired
+};
+
+BlockCode.propTypes = {
+    value: PropTypes.string.isRequired,
+    language: PropTypes.string
+};
+
+BlockCode.defaultProps = {
+    value: '',
+    language: 'js'
 };
 
 Media.propTypes = {

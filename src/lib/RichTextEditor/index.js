@@ -6,7 +6,7 @@ import { Button, Icon, Toolbar } from './components';
 import serializer from './serializer';
 
 import "./index.css";
-import 'bulma/css/bulma.min.css';
+import 'markdown-themes/css/github-theme.css';
 
 /**
  * Define the default node type.

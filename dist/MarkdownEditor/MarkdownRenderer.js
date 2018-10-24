@@ -17,9 +17,21 @@ var ReactKatex = _interopRequireWildcard(require("react-katex"));
 
 var _reactPlayer = _interopRequireDefault(require("react-player"));
 
-require("bulma/css/bulma.min.css");
+var _prismCore = _interopRequireDefault(require("prismjs/components/prism-core"));
+
+require("prismjs/components/prism-clike");
+
+require("prismjs/components/prism-c");
+
+require("prismjs/components/prism-java");
+
+require("prismjs/components/prism-javascript");
 
 require("katex/dist/katex.min.css");
+
+require("prismjs/themes/prism.css");
+
+require("markdown-themes/css/github-theme.css");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -33,19 +45,50 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-var BlockMath = function BlockMath(_ref) {
-  var value = _ref.value;
+var BlockCode = function BlockCode(_ref) {
+  var value = _ref.value,
+      language = _ref.language;
+  var html;
+  var cls; //console.log(props.value)
+
+  try {
+    //try to load prism component for language
+    if (language in _prismCore.default.languages) {
+      import("prismjs/components/prism-" + language);
+    }
+
+    html = _prismCore.default.highlight(value || "", _prismCore.default.languages[language]);
+    cls = "language-".concat(language);
+  } catch (er) {
+    //if load failed, fall back to javascript
+    // console.log(er.message + ": \"" + language + "\"");
+    html = _prismCore.default.highlight(value || "", _prismCore.default.languages["js"]);
+    cls = "language-js";
+  }
+
+  return _react.default.createElement("pre", {
+    className: cls
+  }, _react.default.createElement("code", {
+    dangerouslySetInnerHTML: {
+      __html: html
+    },
+    className: cls
+  }));
+};
+
+var BlockMath = function BlockMath(_ref2) {
+  var value = _ref2.value;
   return _react.default.createElement(ReactKatex.BlockMath, null, value);
 };
 
-var InlineMath = function InlineMath(_ref2) {
-  var value = _ref2.value;
+var InlineMath = function InlineMath(_ref3) {
+  var value = _ref3.value;
   return _react.default.createElement(ReactKatex.InlineMath, null, value);
 };
 
-var Media = function Media(_ref3) {
-  var alt = _ref3.alt,
-      src = _ref3.src;
+var Media = function Media(_ref4) {
+  var alt = _ref4.alt,
+      src = _ref4.src;
 
   if (!alt.startsWith('{video}')) {
     return _react.default.createElement("img", {
@@ -72,8 +115,8 @@ var Media = function Media(_ref3) {
   }));
 };
 
-var ParagraphRenderer = function ParagraphRenderer(_ref4) {
-  var children = _ref4.children;
+var ParagraphRenderer = function ParagraphRenderer(_ref5) {
+  var children = _ref5.children;
   var hasVideo = !!children.find(function (child) {
     return _typeof(child) === 'object' && child.key && !!child.key.match(/image/g) && child.props.alt && child.props.alt.startsWith('{video}');
   });
@@ -87,12 +130,12 @@ var MarkdownRenderer = function MarkdownRenderer(props) {
       paragraph: ParagraphRenderer,
       math: BlockMath,
       inlineMath: InlineMath,
-      image: Media
+      image: Media,
+      code: BlockCode
     })
   });
 
   return _react.default.createElement(_reactMarkdown.default, _extends({
-    className: "content",
     escapeHtml: false
   }, newProps));
 };
@@ -102,6 +145,14 @@ BlockMath.propTypes = {
 };
 InlineMath.propTypes = {
   value: _propTypes.default.string.isRequired
+};
+BlockCode.propTypes = {
+  value: _propTypes.default.string.isRequired,
+  language: _propTypes.default.string
+};
+BlockCode.defaultProps = {
+  value: '',
+  language: 'js'
 };
 Media.propTypes = {
   alt: _propTypes.default.string,

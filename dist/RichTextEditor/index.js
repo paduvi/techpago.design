@@ -19,7 +19,7 @@ var _serializer = _interopRequireDefault(require("./serializer"));
 
 require("./index.css");
 
-require("bulma/css/bulma.min.css");
+require("markdown-themes/css/github-theme.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

@@ -460,7 +460,7 @@ function (_Component) {
         mode: "markdown",
         theme: "solarized_light",
         width: null,
-        height: 425,
+        height: '425px',
         onLoad: this.onLoad,
         onChange: this.onChange,
         onSelectionChange: this.onSelectionChange,
