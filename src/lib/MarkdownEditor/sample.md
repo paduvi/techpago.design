@@ -2,6 +2,8 @@
 
 This is the content of paragraph
 
+![Sample](https://i0.wp.com/sridharkatakam.com/wp-content/uploads/2018/05/genesis-sample-horizontal-opt-in.jpg?ssl=1)
+
 ![{video}](https://www.youtube.com/watch?v=oVXZTmi2ruI)
 
 ### Sub Section:

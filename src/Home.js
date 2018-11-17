@@ -1,9 +1,9 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import logo from './logo.svg';
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import logo from './logo-full.svg';
 
 const Home = () => (
-    <div className="App">
+    <Fragment>
         <sider className="App-sider">
             <img src={logo} className="App-logo" alt="logo" />
             <p>
@@ -19,7 +19,7 @@ const Home = () => (
                 <li><Link to="/404">Page Not Found</Link></li>
             </ol>
         </main>
-    </div>
+    </Fragment>
 );
 
 export default Home;

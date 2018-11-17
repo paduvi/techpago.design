@@ -15,6 +15,7 @@ import "prismjs/components/prism-javascript";
 import 'katex/dist/katex.min.css';
 import 'prismjs/themes/prism.css';
 import 'markdown-themes/css/github-theme.css';
+import './index.css';
 
 
 const BlockCode = ({ value, language }) => {
@@ -66,7 +67,6 @@ const Media = ({ alt, src }) => {
 const ParagraphRenderer = ({ children }) => {
     const hasVideo = !!children.find(
         (child) => typeof child === 'object' && child.key && !!child.key.match(/image/g)
-            && child.props.alt && child.props.alt.startsWith('{video}')
     );
     return hasVideo ? children : <p>{children}</p>;
 };

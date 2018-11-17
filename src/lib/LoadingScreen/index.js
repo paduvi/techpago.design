@@ -47,7 +47,8 @@ class LoadingPage extends PureComponent {
     };
 
     static defaultProps = {
-        isModal: false
+        isModal: false,
+        spin: false
     };
 
     repeatDot = memorize(
@@ -75,12 +76,13 @@ class LoadingPage extends PureComponent {
 
     render() {
         const dots = this.repeatDot(this.state.dot);
-        const { isModal } = this.props;
+        const { isModal, logo } = this.props;
 
         return (
             <div style={isModal ? {} : styles.layout}>
                 <div style={isModal ? styles.wrapperModal : styles.wrapper}>
                     {!isModal && (
+                        logo ||
                         <img
                             alt="logo"
                             src={loadingImage}
@@ -107,7 +109,8 @@ class LoadingPage extends PureComponent {
 }
 
 LoadingPage.propTypes = {
-    isModal: PropTypes.bool
+    isModal: PropTypes.bool,
+    logo: PropTypes.string,
 };
 
 export default LoadingPage;

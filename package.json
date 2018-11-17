@@ -1,5 +1,6 @@
 {
   "name": "@techpago/design",
+  "homepage": "http://demo.techpago.com",
   "version": "0.1.0",
   "scripts": {
     "start": "react-app-rewired start",

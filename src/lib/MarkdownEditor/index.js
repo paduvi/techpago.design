@@ -12,6 +12,7 @@ import LinkDialog from './LinkDialog';
 import sampleMarkdownUrl from './sample.md';
 import 'brace/mode/markdown';
 import 'brace/theme/solarized_light';
+import './index.css';
 
 class RichMarkdownEditor extends Component {
 
@@ -206,7 +207,10 @@ class RichMarkdownEditor extends Component {
                             style={{
                                 maxWidth: 700,
                                 width: mode === 0 ? '90%' : '50%',
+                                height: '100vh',
                                 marginRight: mode === 0 ? 0 : '1em',
+                                display: 'flex',
+                                flexDirection: 'column'
                             }}
                         >
                             <div style={{
@@ -265,7 +269,7 @@ class RichMarkdownEditor extends Component {
                                 mode="markdown"
                                 theme="solarized_light"
                                 width={null}
-                                height={'425px'}
+                                height={'100%'}
                                 onLoad={this.onLoad}
                                 onChange={this.onChange}
                                 onSelectionChange={this.onSelectionChange}
@@ -278,7 +282,8 @@ class RichMarkdownEditor extends Component {
                                 editorProps={{ $blockScrolling: true }}
                                 style={{
                                     border: '1px solid #FFF',
-                                    borderRadius: '0 0 10px 10px'
+                                    borderRadius: '0 0 10px 10px',
+                                    flex: 1
                                 }}
                             />
                         </div>
@@ -286,14 +291,16 @@ class RichMarkdownEditor extends Component {
                             style={{
                                 display: mode === 0 ? 'none' : 'block',
                                 marginLeft: '1em',
+                                position: 'relative',
                                 width: '50%',
-                                height: 460,
+                                height: '100vh',
                                 overflow: 'auto',
                                 padding: '1em',
                                 textAlign: 'left',
                                 background: '#FFF',
                                 ...rendererStyle
                             }}
+                            id='markdown-renderer'
                         >
                             <MarkdownRenderer source={this.state.content} />
                         </div>

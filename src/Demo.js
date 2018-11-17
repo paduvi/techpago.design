@@ -2,8 +2,19 @@ import React from 'react';
 import { Switch, Route, Link, Redirect } from 'react-router-dom';
 import { Layout, Icon } from 'antd';
 import { LoadingScreen, MarkdownEditor, RichTextEditor } from './lib';
+import watermark from './logo-full.svg';
+import logo from './logo.svg';
 
 const { Header, Content, Footer } = Layout;
+
+const LoadingLogo = (
+    <img
+        src={logo}
+        className="App-logo-spin"
+        alt="logo"
+        style={{ maxWidth: '5vw', marginTop: 30, marginBottom: 10 }}
+    />
+);
 
 const Demo = () => (
     <Layout style={{ minHeight: '100vh' }}>
@@ -14,12 +25,14 @@ const Demo = () => (
             <Switch>
                 <Route exact path="/markdown-editor" component={MarkdownEditor} />
                 <Route exact path="/rich-text-editor" component={RichTextEditor} />
-                <Route exact path="/loading-screen" component={LoadingScreen} />
+                <Route exact path="/loading-screen" render={
+                    () => <LoadingScreen logo={LoadingLogo} />
+                } />
                 <Redirect to="/404" />
             </Switch>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-            ©2018 Created by Paduvi
+            ©2018 Created by <img src={watermark} alt="Techpago" style={{ height: 20, marginLeft: 2 }} />
         </Footer>
     </Layout>
 );

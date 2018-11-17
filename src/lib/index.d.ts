@@ -18,6 +18,7 @@ export interface RichTextEditorOptions {
 
 export interface LoadingScreenOptions {
     isModal?: boolean
+    logo?: string
 }
 
 export interface NotFoundOptions {
