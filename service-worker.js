@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/techpago.design/precache-manifest.308c6cf344a1f6cf4960e7652cfd203e.js"
+  "/techpago.design/precache-manifest.db918b5344628015f140dc61e6c25698.js"
 );
 
 workbox.clientsClaim();
