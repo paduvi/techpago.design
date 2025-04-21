@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Link, Redirect } from 'react-router-dom';
 import { Layout, Icon } from 'antd';
 import { LoadingScreen, MarkdownEditor, RichTextEditor } from './lib';
-import watermark from './logo-full.svg';
+import watermark from './logo.svg';
 import logo from './logo.svg';
 
 const { Header, Content, Footer } = Layout;
@@ -21,7 +21,7 @@ const Demo = () => (
         <Header style={{ zIndex: 99 }}>
             <Link to="/" style={styles.back}><Icon type="left" theme="outlined" /> Back To Home</Link>
         </Header>
-        <Content style={{ padding: '30px 15px' }}>
+        <Content style={{ padding: '30px 0px', alignSelf: 'center', width: '90%' }}>
             <Switch>
                 <Route exact path="/markdown-editor" component={MarkdownEditor} />
                 <Route exact path="/rich-text-editor" component={RichTextEditor} />

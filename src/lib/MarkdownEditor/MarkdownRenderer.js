@@ -15,18 +15,18 @@ import "prismjs/components/prism-javascript";
 import 'katex/dist/katex.min.css';
 import 'prismjs/themes/prism.css';
 import 'markdown-themes/css/github-theme.css';
-import './index.css';
+import '../../index.css';
 
 
 const BlockCode = ({ value, language }) => {
     let html;
     let cls;
-    //console.log(props.value)
+    // console.log(value);
     try {
         //try to load prism component for language
-        if (language in Prism.languages) {
-            import("prismjs/components/prism-" + language);
-        }
+        // if (language in Prism.languages) {
+        //     import("prismjs/components/prism-" + language);
+        // }
         
         html = Prism.highlight(value || "", Prism.languages[language]);
         cls = `language-${language}`;

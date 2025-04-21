@@ -12,7 +12,7 @@ import LinkDialog from './LinkDialog';
 import sampleMarkdownUrl from './sample.md';
 import 'brace/mode/markdown';
 import 'brace/theme/solarized_light';
-import './index.css';
+import '../../index.css';
 
 class RichMarkdownEditor extends Component {
 
@@ -199,7 +199,7 @@ class RichMarkdownEditor extends Component {
                         style={{
                             display: "flex",
                             flexDirection: "row",
-                            justifyContent: mode === 1 ? "space-between" : "center",
+                            justifyContent: mode === 1 ? "space-around" : "center",
                             ...style
                         }}
                     >
@@ -291,7 +291,6 @@ class RichMarkdownEditor extends Component {
                             style={{
                                 display: mode === 0 ? 'none' : 'block',
                                 marginLeft: '1em',
-                                position: 'relative',
                                 width: '50%',
                                 height: '100vh',
                                 overflow: 'auto',
